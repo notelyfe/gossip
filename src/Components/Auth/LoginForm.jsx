@@ -1,21 +1,41 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import style from '../../Style/auth.module.css'
 import { Link } from 'react-router-dom'
 import api from '../../Services/api'
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import toast from 'react-hot-toast'
+import Context from '../../Context/Context'
 
 const LoginForm = () => {
 
-    const [credentials, setCredentials] = useState({ user_id: '', password: '' })
-
+    const [credentials, setCredentials] = useState({ login_cred: '', password: '' })
+    const { setLoading } = useContext(Context)
     const [showPass, setShowPass] = useState(false)
 
     const handelLoginCredentials = (e) => {
         setCredentials({ ...credentials, [e.target.name]: e.target.value })
     }
 
-    const handelLogin = (e) => {
+    const handelLogin = async (e) => {
         e.preventDefault()
+
+        try {
+
+            setLoading(true)
+
+            const res = await api.post('/api/user/login', credentials)
+
+            setLoading(false)
+
+            if (res.status === 200) {
+                toast.success("login success")
+                setCredentials({ login_cred: '', password: '' })
+            }
+
+        } catch (error) {
+            setLoading(false)
+            toast.error(error?.response?.data?.message)
+        }
 
     }
 
@@ -25,13 +45,13 @@ const LoginForm = () => {
                 <h1>Login</h1>
             </header>
             <div className={style.formControl}>
-                <label htmlFor="user_id">User Id <span>*</span></label>
+                <label htmlFor="user_id">User-Id or E-Mail <span>*</span></label>
                 <input
                     type="text"
-                    placeholder='User Id'
+                    placeholder='Please Enter either user id or e-mail'
                     onChange={handelLoginCredentials}
-                    value={credentials.user_id}
-                    name='user_id'
+                    value={credentials.login_cred}
+                    name='login_cred'
                     required
                 />
             </div>

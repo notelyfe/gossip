@@ -38,7 +38,9 @@ const SignupForm = () => {
 
             } catch (error) {
                 setLoading(false)
-                toast.error(error)
+                toast.error(error?.response?.data?.message,{
+                    duration: 4000,
+                })
             }
 
         } else {
