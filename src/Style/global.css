@@ -1,0 +1,35 @@
+*,
+::before,
+::after {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: var(--fontFamily);
+    scroll-behavior: smooth;
+}
+
+:root {
+
+    --fontFamily: "Karla", system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Roboto, sans-serif;
+
+    --alpha-dark: #0A2647;
+    /* --alpha-dark: rgb(10, 38, 71) */
+    --beta-dark: #144272;
+    /* --beta-dark: rgb(20, 66, 114); */
+    --gamma-dark: #205295;
+    /* --gamma-dark: rgb(32, 82, 149); */
+    --delta-dark: #2C74B3;
+    /* --delta-dark: rgb(44, 116, 179); */
+
+
+    --alpha-light: #6E85B7;
+    /* --alpha-light: rgb(110, 133, 183) */
+    --beta-light: #B2C8DF;
+    /* --beta-light: rgb(178, 200, 223); */
+    --gamma-light: #C4D7E0;
+    /* --gamma-light: rgb(196, 215, 224); */
+    --delta-light: #F8F9D7;
+    /* --delta-light: rgb(248, 249, 215); */
+}

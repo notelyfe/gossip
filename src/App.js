@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import './Style/global.css'
+import style from './Style/root.module.css'
+import { Routes, Route } from 'react-router-dom'
+import { useContext } from 'react'
+import Context from './Context/Context'
+import { Toaster } from 'react-hot-toast'
+import SignUp from './Pages/SignUpPage'
+import Login from './Pages/LoginPage'
+import ResetPass from './Pages/ResetPasswordPage'
+import Home from './Pages/HomePage'
+import Loading from './Components/LoadingSpinner/Loading'
 
 function App() {
+
+  const { loading } = useContext(Context)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+    <main className={style.main}>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/signup' element={<SignUp />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/user-verification' element={<ResetPass />} />
+      </Routes>
+      {loading && <Loading />}
+      <Toaster />
+    </main>
+
   );
 }
 

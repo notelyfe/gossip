@@ -1,0 +1,7 @@
+.main{
+    background: linear-gradient(to top right , var(--beta-light), var(--gamma-light));
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow-y: auto;
+}
