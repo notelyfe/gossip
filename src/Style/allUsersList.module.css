@@ -1,0 +1,94 @@
+.usersWrapper {
+    width: 400px;
+    height: 100vh;
+    z-index: 9999;
+    position: absolute;
+    background: linear-gradient(var(--beta-light), var(--alpha-light));
+    box-shadow: 2px 0px 10px 0px var(--gamma-dark);
+    padding: 1rem;
+    display: none;
+}
+
+.togglePannel {
+    display: block;
+    animation: toggleSidePannel 200ms 1 both;
+}
+
+@keyframes toggleSidePannel {
+    0% {
+        left: -400px;
+    }
+
+    100% {
+        left: 0px
+    }
+}
+
+.buttonContainer {
+    height: 50px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 25%;
+}
+
+.header {
+    font-size: 24px;
+    color: var(--alpha-dark);
+}
+
+.btnClose {
+    width: 35px;
+    height: 35px;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 50%;
+    background-color: var(--alpha-light);
+    cursor: pointer;
+}
+
+.btnClose:active {
+    transform: scale(0.95);
+    transition: all 0.3s ease-in-out;
+}
+
+.usersListWrapper{
+    height: 85vh;
+    overflow-y: auto;
+    padding: 0.5rem;
+}
+
+.userInfo{
+    min-height: 75px;
+    border-radius: 18px;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    padding: 0.6rem;
+    gap: 16px;
+    background: linear-gradient(var(--alpha-light), var(--beta-light));
+    cursor: pointer;
+}
+
+.userInfo:active{
+    transform: scale(0.95);
+    transition: all 0.3s ease-in-out;
+}
+
+.userInfo img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: var(--gamma-light);
+    padding: 0.3rem;
+}
+
+.userInfo h3{
+    font-size: 24px;
+    color: var(--alpha-dark);
+    text-transform: capitalize;
+}

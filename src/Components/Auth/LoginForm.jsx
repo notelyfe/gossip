@@ -1,46 +1,18 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import style from '../../Style/auth.module.css'
 import { Link } from 'react-router-dom'
-import api from '../../Services/api'
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import toast from 'react-hot-toast'
-import Context from '../../Context/Context'
 
-const LoginForm = () => {
+const LoginForm = ({ handelLogin, credentials, setCredentials, checked, setChecked }) => {
 
-    const [credentials, setCredentials] = useState({ login_cred: '', password: '' })
-    const { setLoading } = useContext(Context)
     const [showPass, setShowPass] = useState(false)
 
     const handelLoginCredentials = (e) => {
         setCredentials({ ...credentials, [e.target.name]: e.target.value })
     }
 
-    const handelLogin = async (e) => {
-        e.preventDefault()
-
-        try {
-
-            setLoading(true)
-
-            const res = await api.post('/api/user/login', credentials)
-
-            setLoading(false)
-
-            if (res.status === 200) {
-                toast.success("login success")
-                setCredentials({ login_cred: '', password: '' })
-            }
-
-        } catch (error) {
-            setLoading(false)
-            toast.error(error?.response?.data?.message)
-        }
-
-    }
-
     return (
-        <form className={style.form} onSubmit={handelLogin}>
+        <form className={style.form} onSubmit={(e) => handelLogin(e, credentials)}>
             <header className={style.formHeader}>
                 <h1>Login</h1>
             </header>
@@ -71,6 +43,16 @@ const LoginForm = () => {
                 }} /> : <AiOutlineEye className={style.hideShow} onClick={() => {
                     setShowPass(!showPass)
                 }} />}
+            </div>
+            <div className={style.checkPersist}>
+                <input
+                    type="checkbox"
+                    name="presistLogin"
+                    id="presistLogin"
+                    onChange={(e) => setChecked(e.target.checked)}
+                    value={checked}
+                />
+                <label htmlFor="presistLogin">Remember me</label>
             </div>
             <div className={style.formControl}>
                 <button type='submit' className={style.submitBtn}>

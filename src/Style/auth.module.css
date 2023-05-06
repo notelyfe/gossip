@@ -34,7 +34,7 @@
     padding-left: 4px;
 }
 
-.formControl label  span{
+.formControl label span {
     color: red;
 }
 
@@ -88,7 +88,7 @@
     font-size: 17px;
 }
 
-.footerLinks{
+.footerLinks {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -102,7 +102,7 @@
     color: var(--alpha-dark);
 }
 
-.hideShow{
+.hideShow {
     position: absolute;
     top: 50px;
     left: 85%;
@@ -111,8 +111,23 @@
     cursor: pointer;
 }
 
-.hideShow:active{
+.hideShow:active {
     transform: scale(0.9);
+}
+
+.checkPersist {
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 1.0rem;
+}
+
+.checkPersist input {
+    height: 20px;
+    width: 20px;
 }
 
 @media (max-width: 550px) {

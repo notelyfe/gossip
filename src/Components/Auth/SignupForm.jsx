@@ -1,55 +1,19 @@
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 import style from '../../Style/auth.module.css'
 import { Link } from 'react-router-dom'
-import api from '../../Services/api'
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import toast from 'react-hot-toast'
-import Context from '../../Context/Context'
 
-const SignupForm = () => {
 
-    const [data, setData] = useState({ name: '', user_id: '', email: '', password: '', cPassword: '' })
+const SignupForm = ({ handelRegistration, data, setData }) => {
+
     const [showPass, setShowPass] = useState(false)
-    const { setLoading } = useContext(Context)
 
     const handelSignUpData = (e) => {
         setData({ ...data, [e.target.name]: e.target.value })
     }
 
-    const handelRegistration = async (e) => {
-        e.preventDefault()
-
-        if (data.password === data.cPassword) {
-
-            try {
-
-                setLoading(true)
-
-                const res = await api.post('/api/user/createUser', data)
-
-                setLoading(false)
-
-                if (res.status === 200) {
-                    toast.success(`verification e-mail is sent to ${data.email}`, {
-                        duration: 5000,
-                    })
-                    setData({ name: '', user_id: '', email: '', password: '', cPassword: '' })
-                }
-
-            } catch (error) {
-                setLoading(false)
-                toast.error(error?.response?.data?.message,{
-                    duration: 4000,
-                })
-            }
-
-        } else {
-            toast.error("Password and Confirm Password didn't match")
-        }
-    }
-
     return (
-        <form className={style.form} onSubmit={handelRegistration}>
+        <form className={style.form} onSubmit={(e) => handelRegistration(e, data)}>
             <header className={style.formHeader}>
                 <h1>Create Account</h1>
             </header>

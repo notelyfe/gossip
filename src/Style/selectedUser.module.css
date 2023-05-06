@@ -1,0 +1,20 @@
+.wrapper{
+    height: 100%;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.wrapper img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: var(--gamma-light);
+    padding: 0.3rem;
+}
+
+.wrapper h3{
+    text-transform: capitalize;
+}

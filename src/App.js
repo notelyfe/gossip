@@ -9,6 +9,8 @@ import Login from './Pages/LoginPage'
 import ResetPass from './Pages/ResetPasswordPage'
 import Home from './Pages/HomePage'
 import Loading from './Components/LoadingSpinner/Loading'
+import Layout from './Components/Layout/Layout'
+import RequireAuth from './Components/RequireAuth/RequireAuth'
 
 function App() {
 
@@ -18,10 +20,17 @@ function App() {
 
     <main className={style.main}>
       <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/signup' element={<SignUp />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/user-verification' element={<ResetPass />} />
+        <Route path='/' element={<Layout />} >
+          {/* public routes */}
+          <Route path='/signup' element={<SignUp />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/user-verification' element={<ResetPass />} />
+
+          {/* protected routes */}
+          <Route element={<RequireAuth />}>
+            <Route path='/' element={<Home />} />
+          </Route>
+        </Route>
       </Routes>
       {loading && <Loading />}
       <Toaster />

@@ -5,3 +5,21 @@
     position: relative;
     overflow-y: auto;
 }
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--alpha-light);
+}
+
+::-webkit-scrollbar-thumb {
+    background-image: linear-gradient(var(--alpha-light), var(--beta-light));
+    border-radius: 12px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--alpha-light);
+    border-radius: 12px;
+}

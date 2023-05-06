@@ -1,0 +1,31 @@
+.messagesInfo {
+    width: 100%;
+    min-height: 60px;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.messages {
+    height: 100%;
+    width: fit-content;
+    max-width: 40%;
+    /* align-self: flex-end; */
+    padding: 1rem;
+    /* background: linear-gradient(to top right, var(--delta-dark), var(--delta-light)); */
+    /* background: linear-gradient(to top right, var(--alpha-light), var(--beta-light)); */
+    word-wrap: break-word;
+    /* color: var(--gamma-light); */
+    color: var(--alpha-dark);
+    line-height: 1.4rem;
+    text-align: justify;
+    font-size: 18px;
+}
+
+.messages small{
+    padding-top: 5px;
+    float: right;
+    font-size: 13px;
+    color: var(--beta-dark);
+}
