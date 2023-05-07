@@ -5,21 +5,19 @@ import Context from "../Context/Context";
 
 const useAxiosPrivate = () => {
     const refresh = useRefreshToken()
-    const { userData } = useContext(Context)
+    const { userData, accessToken } = useContext(Context)
 
     useEffect(() => {
 
         const requestIntercept = apiPrivate.interceptors.request.use(
             config => {
                 if (!config.headers['Authorization']) {
-                    config.headers['Authorization'] = `Bearer ${userData?.access_token}`;
+                    config.headers['Authorization'] = `Bearer ${accessToken}`;
                 }
 
                 return config;
-            }, (error) => {
-                Promise.reject(error)
-            }
-        )
+            }, (error) => Promise.reject(error)
+        );
 
         const responseIntercept = apiPrivate.interceptors.response.use(
             response => response,
@@ -31,13 +29,13 @@ const useAxiosPrivate = () => {
                     prevRequest.headers['Authorization'] = `Bearer ${newAccessToken}`
                     return apiPrivate(prevRequest);
                 }
-                return Promise.reject(error)
+                return Promise.reject(error);
             }
         );
 
         return () => {
-            apiPrivate.interceptors.response.eject(responseIntercept);
             apiPrivate.interceptors.request.eject(requestIntercept);
+            apiPrivate.interceptors.response.eject(responseIntercept);
         }
 
     }, [userData, refresh])

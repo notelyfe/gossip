@@ -11,6 +11,8 @@ import Home from './Pages/HomePage'
 import Loading from './Components/LoadingSpinner/Loading'
 import Layout from './Components/Layout/Layout'
 import RequireAuth from './Components/RequireAuth/RequireAuth'
+import PresistLogin from './Components/PersistLogin/PersistantLogin'
+
 
 function App() {
 
@@ -27,9 +29,12 @@ function App() {
           <Route path='/user-verification' element={<ResetPass />} />
 
           {/* protected routes */}
-          <Route element={<RequireAuth />}>
-            <Route path='/' element={<Home />} />
+          <Route element={<PresistLogin />}>
+            <Route element={<RequireAuth />}>
+              <Route path='/' element={<Home />} />
+            </Route>
           </Route>
+
         </Route>
       </Routes>
       {loading && <Loading />}

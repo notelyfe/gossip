@@ -87,7 +87,7 @@ const Home = ({ setToggleSidePannel, chatData, setChatData, setSelectedUser, sel
 
     useEffect(() => {
         socket = io(socketUrl)
-        socket.emit("setup", userData._id)
+        socket.emit("setup", userData?._id)
         socket.on("connected", () => setSocketConnection(true))
     }, [])
 

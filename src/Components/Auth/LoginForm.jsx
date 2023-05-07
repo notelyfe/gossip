@@ -3,7 +3,7 @@ import style from '../../Style/auth.module.css'
 import { Link } from 'react-router-dom'
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
-const LoginForm = ({ handelLogin, credentials, setCredentials, checked, setChecked }) => {
+const LoginForm = ({ handelLogin, credentials, setCredentials, persist, setPersist }) => {
 
     const [showPass, setShowPass] = useState(false)
 
@@ -49,8 +49,11 @@ const LoginForm = ({ handelLogin, credentials, setCredentials, checked, setCheck
                     type="checkbox"
                     name="presistLogin"
                     id="presistLogin"
-                    onChange={(e) => setChecked(e.target.checked)}
-                    value={checked}
+                    onChange={(e) => {
+                        setPersist(e.target.checked)
+                        localStorage.setItem("persist", e.target.checked)
+                    }}
+                    value={persist}
                 />
                 <label htmlFor="presistLogin">Remember me</label>
             </div>

@@ -5,8 +5,6 @@ import toast from 'react-hot-toast'
 import api from '../../Services/api'
 import Context from '../../Context/Context'
 
-// var socket
-
 const AllUsersList = ({ setToggleSidePannel, toggleSidePannel, usersList, chatData, setChatData, setSelectedUser }) => {
 
     const { accessToken } = useContext(Context)
