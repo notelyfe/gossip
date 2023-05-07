@@ -5,11 +5,13 @@ import toast from 'react-hot-toast'
 import api from '../../Services/api'
 import Context from '../../Context/Context'
 
-const AllUsersList = ({ setToggleSidePannel, toggleSidePannel, usersList }) => {
+// var socket
+
+const AllUsersList = ({ setToggleSidePannel, toggleSidePannel, usersList, chatData, setChatData, setSelectedUser }) => {
 
     const { accessToken } = useContext(Context)
 
-    const createConversation = async (id) => {
+    const createConversation = async (id, name) => {
         try {
 
             const res = await api.post('/api/chat/createChat', { userId: id }, {
@@ -19,6 +21,12 @@ const AllUsersList = ({ setToggleSidePannel, toggleSidePannel, usersList }) => {
             })
 
             if (res?.status === 200) {
+                setChatData([...chatData, res?.data])
+                setSelectedUser({
+                    chatId: res?.data?._id,
+                    userName: name,
+                    userId: id
+                })
                 setToggleSidePannel(false)
             }
 
@@ -37,7 +45,7 @@ const AllUsersList = ({ setToggleSidePannel, toggleSidePannel, usersList }) => {
                 {usersList?.map((item) => {
                     return (
                         <div
-                            onClick={() => createConversation(item._id)}
+                            onClick={() => createConversation(item._id, item.name)}
                             key={item._id}
                             className={style.userInfo}>
                             <img src={defaultPic} alt="" />

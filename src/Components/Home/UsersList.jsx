@@ -2,7 +2,7 @@ import React from 'react'
 import userStyle from '../../Style/usersList.module.css'
 import defaultPic from '../../Assets/User-avatar.jpg'
 
-const UsersList = ({ userData, data, setSelectedUser, selectUser }) => {
+const UsersList = ({ userData, data, setSelectedUser, selectUser, socket }) => {
 
     let users = data?.users?.filter((user) => {
         return user._id !== userData._id
@@ -10,15 +10,16 @@ const UsersList = ({ userData, data, setSelectedUser, selectUser }) => {
 
     const handelChatUser = () => {
         setSelectedUser({
-            chatId: data._id,
+            chatId: data?._id,
             userName: data?.isGroupChat === false ? users[0]?.name : data?.chatName,
             userId: users[0]?._id
         })
+        socket.emit("join room", data?._id)
     }
 
     return (
         <div onClick={handelChatUser} className={userStyle.usersInfoContainer}>
-            {data._id === selectUser.chatId && (
+            {data._id === selectUser?.chatId && (
                 <div className={userStyle.indicator}></div>
             )}
             <div className={userStyle.statusIndicator}>Active</div>

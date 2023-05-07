@@ -10,6 +10,8 @@ const HomePage = () => {
   const [toggleSidePannel, setToggleSidePannel] = useState(false)
   const { accessToken } = useContext(Context)
   const [usersList, setUsersList] = useState(null)
+  const [chatData, setChatData] = useState(null)
+  const [selectUser, setSelectedUser] = useState(null)
 
   const getAllUsers = async () => {
 
@@ -41,8 +43,18 @@ const HomePage = () => {
         toggleSidePannel={toggleSidePannel}
         setUsersList={setUsersList}
         usersList={usersList}
+        setChatData={setChatData}
+        chatData={chatData}
+        setSelectedUser={setSelectedUser}
+        selectUser={selectUser}
       />
-      <Home setToggleSidePannel={setToggleSidePannel} />
+      <Home
+        setToggleSidePannel={setToggleSidePannel}
+        setChatData={setChatData}
+        chatData={chatData}
+        setSelectedUser={setSelectedUser}
+        selectUser={selectUser}
+      />
     </div>
   )
 }

@@ -7,14 +7,17 @@ import Chats from './Chats'
 import Context from '../../Context/Context'
 import api from '../../Services/api'
 import toast from 'react-hot-toast'
+import io from 'socket.io-client'
 
-const Home = ({ setToggleSidePannel }) => {
+const socketUrl = process.env.REACT_APP_SOCKET_BASEURL;
+var socket, selectedChatCompare
+
+const Home = ({ setToggleSidePannel, chatData, setChatData, setSelectedUser, selectUser }) => {
 
     const { userData, accessToken } = useContext(Context)
-    const [chatData, setChatData] = useState(null)
-    const [selectUser, setSelectedUser] = useState(null)
     const [messages, setMessages] = useState(null)
     const [msg, setMsg] = useState('')
+    const [socketConnection, setSocketConnection] = useState(false)
 
     const getAllConversations = async () => {
         try {
@@ -34,7 +37,7 @@ const Home = ({ setToggleSidePannel }) => {
 
     useEffect(() => {
         getAllConversations()
-    }, [])
+    }, [messages])
 
     const getMessages = async () => {
 
@@ -48,8 +51,11 @@ const Home = ({ setToggleSidePannel }) => {
     }
 
     useEffect(() => {
-        getMessages()
-    }, [selectUser?.chatId])
+        if (selectUser !== null || selectUser !== undefined) {
+            getMessages()
+            selectedChatCompare = selectUser
+        }
+    }, [selectUser])
 
     const sendMessage = async () => {
 
@@ -59,19 +65,46 @@ const Home = ({ setToggleSidePannel }) => {
             receiver: selectUser.userId
         }
 
-        try {
+        if (sentMsg.content === '') {
+            toast.error("Message Can't left blank")
+        } else {
+            try {
 
-            const res = await api.post('/api/msg/sendMsg', sentMsg, {
-                headers: {
-                    Authorization: `Bearer ${accessToken}`
-                }
-            })
+                const { data } = await api.post('/api/msg/sendMsg', sentMsg, {
+                    headers: {
+                        Authorization: `Bearer ${accessToken}`
+                    }
+                })
 
-            setMessages(messages.concat(res.data))
-            setMsg('')
+                socket.emit("new messages", data)
+                setMessages([...messages, data])
+                setMsg('')
+            } catch (error) {
+                toast.error(error?.response?.data?.message)
+            }
+        }
+    }
 
-        } catch (error) {
-            toast.error(error?.response?.data?.message)
+    useEffect(() => {
+        socket = io(socketUrl)
+        socket.emit("setup", userData._id)
+        socket.on("connected", () => setSocketConnection(true))
+    }, [])
+
+    useEffect(() => {
+        socket.on("message received", (newMessageReceived) => {
+
+            if (selectedChatCompare.chatId === newMessageReceived.chat) {
+                setMessages([...messages, newMessageReceived])
+            } else {
+                setMessages(messages)
+            }
+        })
+    })
+
+    const handelInputByEnterKey = (e) => {
+        if (e.key === "Enter") {
+            sendMessage()
         }
     }
 
@@ -96,6 +129,7 @@ const Home = ({ setToggleSidePannel }) => {
                                 userData={userData}
                                 setSelectedUser={setSelectedUser}
                                 selectUser={selectUser}
+                                socket={socket}
                             />
                         )
                     })}
@@ -129,6 +163,7 @@ const Home = ({ setToggleSidePannel }) => {
                             placeholder='Message'
                             onChange={(e) => setMsg(e.target.value)}
                             value={msg}
+                            onKeyUp={handelInputByEnterKey}
                         />
                         <button onClick={sendMessage}>Send</button>
                     </div>
