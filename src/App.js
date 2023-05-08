@@ -6,8 +6,12 @@ import Context from './Context/Context'
 import { Toaster } from 'react-hot-toast'
 import SignUp from './Pages/SignUpPage'
 import Login from './Pages/LoginPage'
-import ResetPass from './Pages/ResetPasswordPage'
+import UserVerification from './Pages/UserVerificationPage'
+import CreatePassword from './Pages/CreateNewPasswordPage'
 import Home from './Pages/HomePage'
+import Profile from './Pages/ProfilePage'
+import Notification from './Pages/NotificationPage'
+import Settings from './Pages/SettingPage'
 import Loading from './Components/LoadingSpinner/Loading'
 import Layout from './Components/Layout/Layout'
 import RequireAuth from './Components/RequireAuth/RequireAuth'
@@ -26,12 +30,16 @@ function App() {
           {/* public routes */}
           <Route path='/signup' element={<SignUp />} />
           <Route path='/login' element={<Login />} />
-          <Route path='/user-verification' element={<ResetPass />} />
+          <Route path='/user-verification' element={<UserVerification />} />
+          <Route path='/reset-password' element={<CreatePassword />} />
 
           {/* protected routes */}
           <Route element={<PresistLogin />}>
             <Route element={<RequireAuth />}>
               <Route path='/' element={<Home />} />
+              <Route path='/profile' element={<Profile />} />
+              <Route path='/setting' element={<Settings />} />
+              <Route path='/notification' element={<Notification />} />
             </Route>
           </Route>
 

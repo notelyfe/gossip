@@ -4,6 +4,7 @@ import AllUsersList from '../Components/Home/AllUsersList'
 import api from '../Services/api'
 import Context from '../Context/Context'
 import toast from 'react-hot-toast'
+import Navbar from '../Components/NavBar/Navbar'
 
 const HomePage = () => {
 
@@ -38,6 +39,7 @@ const HomePage = () => {
 
   return (
     <div>
+      <Navbar />
       <AllUsersList
         setToggleSidePannel={setToggleSidePannel}
         toggleSidePannel={toggleSidePannel}
