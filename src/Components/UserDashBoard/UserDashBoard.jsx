@@ -42,6 +42,7 @@ const UserDashBoard = () => {
 
             if (res.status === 204) {
                 toast.success("Logged out")
+                localStorage.removeItem('persist')
                 navigate('/login')
             }
 
@@ -53,7 +54,7 @@ const UserDashBoard = () => {
 
     return (
         <>
-            <Navbar logout={logout} />
+            <Navbar />
             <div className={style.dashboardWrapper}>
                 <SideNav
                     setIsCollapse={setIsCollapse}

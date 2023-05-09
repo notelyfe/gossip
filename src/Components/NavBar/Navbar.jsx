@@ -5,9 +5,9 @@ import avatar from '../../Assets/User-avatar.jpg'
 import Context from '../../Context/Context'
 import NavLinks from './NavLinks'
 
-const Navbar = ({ logout }) => {
+const Navbar = () => {
 
-    const { userData } = useContext(Context)
+    const { userData, setLoading } = useContext(Context)
     const [navLinkState, setNavLinkState] = useState(false)
 
     return (
@@ -24,7 +24,7 @@ const Navbar = ({ logout }) => {
             <NavLinks
                 setNavLinkState={setNavLinkState}
                 navLinkState={navLinkState}
-                logout={logout}
+                setLoading={setLoading}
             />
         </>
     )
