@@ -32,5 +32,7 @@
     /* --gamma-light: rgb(196, 215, 224); */
     --delta-light: #F8F9D7;
     /* --delta-light: rgb(248, 249, 215); */
+
+    --danger: rgb(231, 62, 62);
 }
 

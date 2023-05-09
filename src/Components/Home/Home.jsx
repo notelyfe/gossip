@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import style from '../../Style/home.module.css'
-import defaultPic from '../../Assets/User-avatar.jpg'
+import avatar from '../../Assets/User-avatar.jpg'
 import UsersList from './UsersList'
 import SelectedUser from './SelectedUser'
 import Chats from './Chats'
@@ -112,7 +112,7 @@ const Home = ({ setToggleSidePannel, chatData, setChatData, setSelectedUser, sel
         <div className={style.homeWrapper}>
             <div className={style.leftSide}>
                 <div className={style.userDataContainer}>
-                    <img src={defaultPic} alt="user profile pic" />
+                    <img src={userData?.profile_pic === null ? avatar : userData?.profile_pic} alt="user profile pic" />
                     <h5>{userData?.name}</h5>
                 </div>
                 <div className={style.searchContainer}>

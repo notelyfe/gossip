@@ -4,10 +4,10 @@ import { Link, useLocation } from 'react-router-dom'
 import userGear from '../../Assets/user-gear.png'
 import profile from '../../Assets/user.png'
 import notification from '../../Assets/notification.png'
-import logout from '../../Assets/logout.png'
+import logoutImg from '../../Assets/logout.png'
 import home from '../../Assets/home.png'
 
-const SideNav = ({ isCollapse, setIsCollapse, mobileCollapse, setMobileCollapse }) => {
+const SideNav = ({ isCollapse, setIsCollapse, mobileCollapse, setMobileCollapse, logout }) => {
 
     var location = useLocation()
     location = location.pathname.split('/')
@@ -49,8 +49,8 @@ const SideNav = ({ isCollapse, setIsCollapse, mobileCollapse, setMobileCollapse 
                         </Link>
                     </li>
                     <li>
-                        <button className={style.logoutBtn}>
-                            <img src={logout} alt="logout avatar" />
+                        <button onClick={() => logout()} className={style.logoutBtn}>
+                            <img src={logoutImg} alt="logout avatar" />
                             {!isCollapse && "Logout"}
                         </button>
                     </li>

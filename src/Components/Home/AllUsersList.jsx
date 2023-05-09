@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import style from '../../Style/allUsersList.module.css'
-import defaultPic from '../../Assets/User-avatar.jpg'
+import avatar from '../../Assets/User-avatar.jpg'
 import toast from 'react-hot-toast'
 import api from '../../Services/api'
 import Context from '../../Context/Context'
@@ -9,7 +9,7 @@ const AllUsersList = ({ setToggleSidePannel, toggleSidePannel, usersList, chatDa
 
     const { accessToken } = useContext(Context)
 
-    const createConversation = async (id, name) => {
+    const createConversation = async (id, name, image) => {
         try {
 
             const res = await api.post('/api/chat/createChat', { userId: id }, {
@@ -23,7 +23,8 @@ const AllUsersList = ({ setToggleSidePannel, toggleSidePannel, usersList, chatDa
                 setSelectedUser({
                     chatId: res?.data?._id,
                     userName: name,
-                    userId: id
+                    userId: id,
+                    image: image === null ? avatar : image
                 })
                 setToggleSidePannel(false)
             }
@@ -43,10 +44,10 @@ const AllUsersList = ({ setToggleSidePannel, toggleSidePannel, usersList, chatDa
                 {usersList?.map((item) => {
                     return (
                         <div
-                            onClick={() => createConversation(item._id, item.name)}
+                            onClick={() => createConversation(item?._id, item?.name, item?.profile_pic)}
                             key={item._id}
                             className={style.userInfo}>
-                            <img src={defaultPic} alt="" />
+                            <img src={item?.profile_pic === null ? avatar : item?.profile_pic} alt="profile picture" />
                             <h3>{item?.name}</h3>
                         </div>
                     )

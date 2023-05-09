@@ -5,7 +5,7 @@ import avatar from '../../Assets/User-avatar.jpg'
 import Context from '../../Context/Context'
 import NavLinks from './NavLinks'
 
-const Navbar = () => {
+const Navbar = ({ logout }) => {
 
     const { userData } = useContext(Context)
     const [navLinkState, setNavLinkState] = useState(false)
@@ -16,7 +16,7 @@ const Navbar = () => {
                 <div className={style.wrapper}>
                     <img className={style.logo} src={logo} alt="website logo" />
                     <div onClick={() => setNavLinkState(!navLinkState)} className={style.userInfoContainer}>
-                        <img src={avatar} alt="user avatar" />
+                        <img src={userData?.profile_pic === null ? avatar : userData?.profile_pic} alt="user avatar" />
                         <h2>{userData?.name} &#x25BC;</h2>
                     </div>
                 </div>
@@ -24,6 +24,7 @@ const Navbar = () => {
             <NavLinks
                 setNavLinkState={setNavLinkState}
                 navLinkState={navLinkState}
+                logout={logout}
             />
         </>
     )

@@ -1,6 +1,6 @@
 import React from 'react'
 import userStyle from '../../Style/usersList.module.css'
-import defaultPic from '../../Assets/User-avatar.jpg'
+import avatar from '../../Assets/User-avatar.jpg'
 
 const UsersList = ({ userData, data, setSelectedUser, selectUser, socket }) => {
 
@@ -12,7 +12,8 @@ const UsersList = ({ userData, data, setSelectedUser, selectUser, socket }) => {
         setSelectedUser({
             chatId: data?._id,
             userName: data?.isGroupChat === false ? users[0]?.name : data?.chatName,
-            userId: users[0]?._id
+            userId: users[0]?._id,
+            image: users[0]?.profile_pic === null ? avatar : users[0]?.profile_pic
         })
         socket.emit("join room", data?._id)
     }
@@ -23,7 +24,7 @@ const UsersList = ({ userData, data, setSelectedUser, selectUser, socket }) => {
                 <div className={userStyle.indicator}></div>
             )}
             <div className={userStyle.statusIndicator}>Active</div>
-            <img src={defaultPic} alt="user profile image" />
+            <img src={users[0]?.profile_pic === null ? avatar : users[0]?.profile_pic} alt="user profile image" />
             <div className={userStyle.userinfo}>
                 <h5>{data?.isGroupChat === false ? users[0]?.name : data?.chatName}</h5>
                 <p>{data?.latestMsg && data?.latestMsg?.content}</p>

@@ -1,0 +1,53 @@
+.userInfo {
+    width: 100%;
+    height: 100%;
+    margin-left: 0.3rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.data {
+    border-bottom: 1px solid var(--alpha-dark);
+    display: flex;
+    min-height: 45px;
+    height: fit-content;
+    align-items: center;
+    gap: 20px;
+    padding: 0.6rem;
+    margin: 5px;
+}
+
+.data label {
+    font-size: 20px;
+    font-weight: 500;
+    width: 50px;
+}
+
+.data input {
+    height: 35px;
+    padding-left: 10px;
+    width: 90%;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    background: var(--beta-light);
+}
+
+.data input:focus {
+    outline: 2px solid var(--alpha-dark);
+}
+
+.saveBtn {
+    border: none;
+    width: 150px;
+    height: 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    background: var(--beta-light);
+    align-self: flex-end;
+}
+
+.saveBtn:active {
+    transform: scale(0.95);
+}

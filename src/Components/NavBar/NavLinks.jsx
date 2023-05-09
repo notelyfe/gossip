@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom'
 import userGear from '../../Assets/user-gear.png'
 import profile from '../../Assets/user.png'
 import notification from '../../Assets/notification.png'
-import logout from '../../Assets/logout.png'
+import logoutIcon from '../../Assets/logout.png'
 
-const NavLinks = ({ navLinkState, setNavLinkState }) => {
+const NavLinks = ({ navLinkState, setNavLinkState, logout }) => {
     return (
         <div className={`${style.navLinkWrapper} ${navLinkState && style.toggleNavLinks}`}>
             <ul>
@@ -29,8 +29,8 @@ const NavLinks = ({ navLinkState, setNavLinkState }) => {
                     </Link>
                 </li>
                 <li>
-                    <button className={style.logoutBtn}>
-                        <img src={logout} alt="logout avatar" />
+                    <button onClick={() => logout()} className={style.logoutBtn}>
+                        <img src={logoutIcon} alt="logout avatar" />
                         Logout
                     </button>
                 </li>

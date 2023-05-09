@@ -2,7 +2,6 @@
     width: 50%;
     max-width: 1440px;
     margin: 25px auto;
-    padding: 0.6rem;
     padding: 1.2rem;
 }
 
@@ -50,6 +49,7 @@
 
 .profileImageWrapper {
     margin-right: 0.3rem;
+    position: relative;
 }
 
 .userInfo {
@@ -58,12 +58,34 @@
     margin-left: 0.3rem;
 }
 
-.profileImageWrapper img {
+.profileImage {
     width: 200px;
     height: 200px;
     border-radius: 50%;
     background: var(--beta-light);
     padding: 0.6rem;
+}
+
+.imageEditBtn{
+    position: absolute;
+    top: 70%;
+    left: 80%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+}
+
+.imageEditBtn:active{
+    transform: scale(0.95);
+}
+
+.imageEditBtn img{
+    width: 30px;
 }
 
 .data {
@@ -86,12 +108,64 @@
 .data h4 {
     font-size: 20px;
     text-transform: capitalize;
-    /* word-break: break-all; */
+}
+
+.profileFooter {
+    padding: 1.2rem;
+    height: 45px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 15px;
+}
+
+.editBtn,
+.deleteBtn,
+.cancelBtn,
+.saveBtn {
+    border: none;
+    width: 150px;
+    height: 30px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.editBtn,
+.cancelBtn,
+.saveBtn {
+    background: var(--beta-light);
+}
+
+.deleteBtn {
+    background: var(--danger);
+}
+
+.editBtn:active {
+    transform: scale(0.95);
+}
+
+.deleteBtn:active {
+    transform: scale(0.95);
+}
+
+.cancelBtn:active {
+    transform: scale(0.95);
+}
+
+.saveBtn:active {
+    transform: scale(0.95);
 }
 
 @media (max-width: 1260px) {
     .userWrapper {
         width: 70%;
+    }
+}
+
+@media (max-width: 1024px) {
+    .userWrapper {
+        width: 85%;
     }
 }
 
