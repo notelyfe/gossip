@@ -134,19 +134,33 @@
 }
 
 @media (max-width: 1440px) {
-    .navLinkWrapper{
+    .navLinkWrapper {
         left: 78%
     }
 }
 
 @media (max-width: 1024px) {
-    .navLinkWrapper{
+    .navLinkWrapper {
         left: 71%
     }
 }
 
 @media (max-width: 786px) {
-    .navLinkWrapper{
+    .navLinkWrapper {
         left: 63%
+    }
+}
+
+@media (max-width: 500px) {
+    .userInfoContainer h2 {
+        display: none;
+    }
+
+    .navLinkWrapper {
+        left: 58%
+    }
+
+    .navLinkWrapper {
+        width: fit-content;
     }
 }

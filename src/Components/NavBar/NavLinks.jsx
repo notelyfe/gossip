@@ -11,19 +11,19 @@ const NavLinks = ({ navLinkState, setNavLinkState }) => {
         <div className={`${style.navLinkWrapper} ${navLinkState && style.toggleNavLinks}`}>
             <ul>
                 <li>
-                    <Link onClick={() => setNavLinkState(false)} to='/profile' className={style.navLink}>
+                    <Link onClick={() => setNavLinkState(false)} to='/dashboard/profile' className={style.navLink}>
                         <img src={profile} alt="profile avatar" />
                         Profile
                     </Link>
                 </li>
                 <li>
-                    <Link onClick={() => setNavLinkState(false)} to='/notification' className={style.navLink}>
+                    <Link onClick={() => setNavLinkState(false)} to='/dashboard/notification' className={style.navLink}>
                         <img src={notification} alt="notification avatar" />
                         Notifications
                     </Link>
                 </li>
                 <li>
-                    <Link onClick={() => setNavLinkState(false)} to='/setting' className={style.navLink}>
+                    <Link onClick={() => setNavLinkState(false)} to='/dashboard/setting' className={style.navLink}>
                         <img src={userGear} alt="setting avatar" />
                         Settings
                     </Link>

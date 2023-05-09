@@ -1,0 +1,32 @@
+.dashboardWrapper {
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 92vh;
+    overflow-y: auto;
+    position: absolute;
+    top: 75px;
+}
+
+.mainWrapper {
+    position: fixed;
+    top: 75pxpx;
+    left: 300px;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    height: 92vh;
+    overflow-y: auto;
+    transition: all 0.3s ease-in-out;
+}
+
+.collapseMainWrapper{
+    left: 80px;
+    transition: all 0.3s ease-in-out;
+}
+
+.expandWrapper{
+    left: 0px;
+    transition: all 0.3s ease-in-out;
+}
