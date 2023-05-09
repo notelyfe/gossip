@@ -3,7 +3,7 @@ import React from 'react'
 const Settings = () => {
   return (
     <div>
-      setting
+      <h1>Setting comming soon</h1>
     </div>
   )
 }

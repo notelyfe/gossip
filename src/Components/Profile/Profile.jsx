@@ -107,7 +107,7 @@ const Profile = () => {
                 <footer className={style.profileFooter}>
                     <button onClick={() => setEditToggle(true)} className={style.editBtn}>Edit Profile</button>
                     <button className={style.deleteBtn}>Delete Account</button>
-                    {editToggle || profilePreview && (
+                    {editToggle || profilePreview ? (
                         <button
                             onClick={() => {
                                 setEditToggle(false)
@@ -116,7 +116,7 @@ const Profile = () => {
                             className={style.cancelBtn}
                         >Cancel
                         </button>
-                    )}
+                    ) : ''}
                     {profilePreview && (
                         <button
                             onClick={handelUploadProfilePic}
