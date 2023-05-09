@@ -29,3 +29,9 @@
     font-size: 13px;
     color: var(--beta-dark);
 }
+
+@media (max-width: 768px) {
+    .messages{
+        max-width: 70%;
+    }
+}

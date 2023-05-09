@@ -1,15 +1,9 @@
 .homeWrapper {
     width: 90%;
     height: 85vh;
-    /* position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); */
     background: linear-gradient(to top right, var(--alpha-light), var(--beta-light));
     border-radius: 16px;
     box-shadow: -3px 2px 8px 0px var(--gamma-dark);
-    /* backdrop-filter: blur(120px) saturate(110%); */
-    /* filter: hue-rotate(45deg); */
     display: flex;
     flex-direction: row;
     position: relative;
@@ -75,6 +69,7 @@
     overflow-y: auto;
     padding: 10px;
     border-bottom: 2px solid var(--gamma-light);
+    position: relative;
 }
 
 .newChatButtonWrapper {
@@ -109,6 +104,21 @@
     height: 80px;
     width: 100%;
     border-bottom: 2px solid var(--gamma-light);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .6rem;
+}
+.backBtn{
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    font-weight: 700;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: none;
 }
 
 .messageContainer {
@@ -117,6 +127,7 @@
     height: 69vh;
     overflow-y: auto;
     padding: 1rem;
+    position: relative;
 }
 
 .inputContainer {
@@ -124,7 +135,6 @@
     align-items: center;
     height: 70px;
     padding: 1rem;
-    /* justify-content: space-between; */
 }
 
 .inputContainer input {
@@ -159,6 +169,18 @@
     transform: scale(0.98);
 }
 
+@media (max-width: 1440px) {
+
+    .usersWrapper {
+        height: 63vh;
+    }
+
+    .messageContainer {
+        height: 68vh;
+    }
+
+}
+
 @media (max-width: 1024px) {
 
     .leftSide {
@@ -168,7 +190,6 @@
     .rightSide {
         width: 65%;
     }
-
 }
 
 @media (max-width: 768px) {
@@ -181,4 +202,28 @@
         width: 55%;
     }
 
+}
+
+@media (max-width: 550px) {
+    .toggleLeftSide {
+        display: none;
+    }
+
+    .toggleRightSide{
+        display: block;
+        width: 100%;
+    }
+
+    .collapseLeftSide{
+        display: block;
+        width: 100%;
+    }
+
+    .collapseRightSide{
+        display: none;
+    }
+
+    .backBtn{
+        display: flex;
+    }
 }

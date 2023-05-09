@@ -2,7 +2,7 @@ import React from 'react'
 import userStyle from '../../Style/usersList.module.css'
 import avatar from '../../Assets/User-avatar.jpg'
 
-const UsersList = ({ userData, data, setSelectedUser, selectUser, socket }) => {
+const UsersList = ({ userData, data, setSelectedUser, selectUser, socket, setMobileView, mobileView }) => {
 
     let users = data?.users?.filter((user) => {
         return user._id !== userData._id
@@ -16,6 +16,7 @@ const UsersList = ({ userData, data, setSelectedUser, selectUser, socket }) => {
             image: users[0]?.profile_pic === null ? avatar : users[0]?.profile_pic
         })
         socket.emit("join room", data?._id)
+        setMobileView(true)
     }
 
     return (
@@ -27,7 +28,7 @@ const UsersList = ({ userData, data, setSelectedUser, selectUser, socket }) => {
             <img src={users[0]?.profile_pic === null ? avatar : users[0]?.profile_pic} alt="user profile image" />
             <div className={userStyle.userinfo}>
                 <h5>{data?.isGroupChat === false ? users[0]?.name : data?.chatName}</h5>
-                <p>{data?.latestMsg && data?.latestMsg?.content}</p>
+                <p>{data?.latestMsg && data?.latestMsg?.content.slice(0, 15) + "..."}</p>
             </div>
         </div>
     )

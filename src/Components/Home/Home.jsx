@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import style from '../../Style/home.module.css'
 import avatar from '../../Assets/User-avatar.jpg'
+import leftArrow from '../../Assets/arrow.png'
 import UsersList from './UsersList'
 import SelectedUser from './SelectedUser'
 import Chats from './Chats'
@@ -18,6 +19,7 @@ const Home = ({ setToggleSidePannel, chatData, setChatData, setSelectedUser, sel
     const [messages, setMessages] = useState(null)
     const [msg, setMsg] = useState('')
     const [socketConnection, setSocketConnection] = useState(false)
+    const [mobileView, setMobileView] = useState(false)
 
     const getAllConversations = async () => {
         try {
@@ -110,7 +112,7 @@ const Home = ({ setToggleSidePannel, chatData, setChatData, setSelectedUser, sel
 
     return (
         <div className={style.homeWrapper}>
-            <div className={style.leftSide}>
+            <div className={`${style.leftSide} ${mobileView && style.toggleLeftSide} ${mobileView === false && style.collapseLeftSide}`}>
                 <div className={style.userDataContainer}>
                     <img src={userData?.profile_pic === null ? avatar : userData?.profile_pic} alt="user profile pic" />
                     <h5>{userData?.name}</h5>
@@ -130,6 +132,8 @@ const Home = ({ setToggleSidePannel, chatData, setChatData, setSelectedUser, sel
                                 setSelectedUser={setSelectedUser}
                                 selectUser={selectUser}
                                 socket={socket}
+                                mobileView={mobileView}
+                                setMobileView={setMobileView}
                             />
                         )
                     })}
@@ -139,17 +143,20 @@ const Home = ({ setToggleSidePannel, chatData, setChatData, setSelectedUser, sel
                     <button>Create Group Chat</button>
                 </div>
             </div>
-            <div className={style.rightSide}>
+            <div className={`${style.rightSide} ${mobileView && style.toggleRightSide} ${mobileView === false && style.collapseRightSide}`}>
                 {selectUser && (
                     <div className={style.topContainer}>
                         <SelectedUser
                             selectUser={selectUser}
                         />
+                        <button onClick={() => setMobileView(false)} className={style.backBtn}>
+                            <img src={leftArrow} alt="arrow image" />
+                        </button>
                     </div>
                 )}
                 {selectUser && (
                     <div className={style.messageContainer}>
-                        {messages.map((item) => {
+                        {messages?.map((item) => {
                             return (
                                 <Chats key={item._id} chatData={item} userData={userData} />
                             )
