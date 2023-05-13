@@ -63,8 +63,7 @@ const Home = ({ setToggleSidePannel, chatData, setChatData, setSelectedUser, sel
 
         let sentMsg = {
             content: msg,
-            chatId: selectUser.chatId,
-            receiver: selectUser.userId
+            chatId: selectUser.chatId
         }
 
         if (sentMsg.content === '') {
