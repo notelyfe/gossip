@@ -68,10 +68,11 @@ const EditForm = ({ userData, setUserData, setLoading, accessToken, setEditToggl
                 <label htmlFor="email">Email</label>
                 <span>:</span>
                 <input
+                    disabled
                     required
                     type="email"
                     placeholder='E-mail'
-                    onChange={handelInfo}
+                    // onChange={handelInfo}
                     value={info.email}
                     name='email'
                 />
