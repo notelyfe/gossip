@@ -132,11 +132,15 @@
 
 @media (max-width: 550px) {
     .form {
-        width: 400px;
+        width: 90% !important;
+    }
+
+    .verifyWrapper {
+        width: 90% !important;
     }
 }
 
-.verifyWrapper{
+.verifyWrapper {
     width: 500px;
     box-shadow: -3px 2px 8px 0px var(--beta-dark);
     border-radius: 10px;
@@ -146,16 +150,16 @@
     line-height: 30px;
 }
 
-.verifyWrapper h3{
+.verifyWrapper h3 {
     text-align: center;
     margin-bottom: 20px;
 }
 
-.verifyWrapper span{
+.verifyWrapper span {
     font-weight: 700;
 }
 
-.verifyBtn{
+.verifyBtn {
     width: 200px;
     height: 45px;
     margin-top: 20px;
@@ -167,6 +171,6 @@
     cursor: pointer;
 }
 
-.verifyBtn:active{
+.verifyBtn:active {
     transform: scale(0.95);
 }

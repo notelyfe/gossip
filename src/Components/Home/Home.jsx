@@ -136,7 +136,7 @@ const Home = ({ setToggleSidePannel, chatData, setChatData, setSelectedUser, sel
                 </div>
                 <div className={style.newChatButtonWrapper}>
                     <button onClick={() => setToggleSidePannel(true)}>Create New Chat</button>
-                    <button>Create Group Chat</button>
+                    {/* <button>Create Group Chat</button> */}
                 </div>
             </div>
             <div className={`${style.rightSide} ${mobileView && style.toggleRightSide} ${mobileView === false && style.collapseRightSide}`}>
