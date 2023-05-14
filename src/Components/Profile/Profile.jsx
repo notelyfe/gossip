@@ -55,7 +55,8 @@ const Profile = () => {
         try {
 
             const res = await api.delete('/api/user/deleteUser', {
-                data: { password: deletePassword }, headers: {
+                data: { password: deletePassword },
+                headers: {
                     Authorization: `Bearer ${accessToken}`
                 }
             })

@@ -4,6 +4,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    /* border: 2px solid red; */
 }
 
 .wrapper img {
@@ -17,4 +18,33 @@
 
 .wrapper h3{
     text-transform: capitalize;
+}
+
+.deleteChat{
+    height: 30px;
+    width: 85px;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--alpha-dark);
+    color: var(--delta-light);
+    cursor: pointer;
+}
+
+.deleteChat:active{
+    transform: scale(0.95);
+}
+
+.userContextBtn{
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--delta-light);
+}
+.userContextBtn:active{
+    transform: scale(0.95);
 }

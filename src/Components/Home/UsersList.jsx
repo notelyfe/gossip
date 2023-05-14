@@ -24,7 +24,8 @@ const UsersList = ({ userData, data, setSelectedUser, selectUser, socket, setMob
             {data._id === selectUser?.chatId && (
                 <div className={userStyle.indicator}></div>
             )}
-            <div className={userStyle.statusIndicator}>Active</div>
+            {/* <div className={userStyle.statusIndicator}>Active</div> */}
+            
             <img src={users[0]?.profile_pic === null ? avatar : users[0]?.profile_pic} alt="user profile image" />
             <div className={userStyle.userinfo}>
                 <h5>{data?.isGroupChat === false ? users[0]?.name : data?.chatName}</h5>

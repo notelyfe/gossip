@@ -16,9 +16,8 @@ var socket, selectedChatCompare
 const Home = ({ setToggleSidePannel, chatData, setChatData, setSelectedUser, selectUser }) => {
 
     const { userData, accessToken } = useContext(Context)
-    const [messages, setMessages] = useState(null)
+    const [messages, setMessages] = useState({})
     const [msg, setMsg] = useState('')
-    const [socketConnection, setSocketConnection] = useState(false)
     const [mobileView, setMobileView] = useState(false)
 
     const getAllConversations = async () => {
@@ -77,8 +76,8 @@ const Home = ({ setToggleSidePannel, chatData, setChatData, setSelectedUser, sel
                     }
                 })
 
-                socket.emit("new messages", data)
                 setMessages([...messages, data])
+                socket.emit("new messages", data, messages)
                 setMsg('')
             } catch (error) {
                 toast.error(error?.response?.data?.message)
@@ -89,16 +88,14 @@ const Home = ({ setToggleSidePannel, chatData, setChatData, setSelectedUser, sel
     useEffect(() => {
         socket = io(socketUrl)
         socket.emit("setup", userData?._id)
-        socket.on("connected", () => setSocketConnection(true))
+        socket.on("connected")
     }, [])
 
     useEffect(() => {
-        socket.on("message received", (newMessageReceived) => {
-
-            if (selectedChatCompare.chatId === newMessageReceived.chat) {
-                setMessages([...messages, newMessageReceived])
-            } else {
-                setMessages(messages)
+        socket.on("message received", (newMessageReceived, msg) => {
+            if (selectedChatCompare?.chatId === newMessageReceived.chat) {
+                // setMessages([...messages, newMessageReceived])
+                setMessages([...msg, newMessageReceived])
             }
         })
     })
@@ -147,6 +144,9 @@ const Home = ({ setToggleSidePannel, chatData, setChatData, setSelectedUser, sel
                     <div className={style.topContainer}>
                         <SelectedUser
                             selectUser={selectUser}
+                            setChatData={setChatData}
+                            chatData={chatData}
+                            setSelectedUser={setSelectedUser}
                         />
                         <button onClick={() => setMobileView(false)} className={style.backBtn}>
                             <img src={leftArrow} alt="arrow image" />
