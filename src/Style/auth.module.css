@@ -135,3 +135,38 @@
         width: 400px;
     }
 }
+
+.verifyWrapper{
+    width: 500px;
+    box-shadow: -3px 2px 8px 0px var(--beta-dark);
+    border-radius: 10px;
+    margin-top: 20px;
+    padding: 1.2rem;
+    font-size: 18px;
+    line-height: 30px;
+}
+
+.verifyWrapper h3{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.verifyWrapper span{
+    font-weight: 700;
+}
+
+.verifyBtn{
+    width: 200px;
+    height: 45px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 18px;
+    background: var(--alpha-dark);
+    color: var(--gamma-light);
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.verifyBtn:active{
+    transform: scale(0.95);
+}

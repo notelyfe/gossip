@@ -17,6 +17,7 @@ import UserDashBoard from './Components/UserDashBoard/UserDashBoard'
 import Settings from './Components/Settings/Settings'
 import Profile from './Components/Profile/Profile'
 import Notification from './Components/Notification/Notification'
+import VerifyEmail from './Pages/VerifyEmail'
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/user-verification' element={<UserVerification />} />
           <Route path='/reset-password' element={<CreatePassword />} />
+          <Route path='/verify' element={<VerifyEmail />} />
 
           {/* protected routes */}
           <Route element={<PresistLogin />}>
